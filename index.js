@@ -8,47 +8,73 @@
 // ======== OBJECTS DEFINITIONS ========
 // Define your objects here
 
-const man = {
-    species: 'man',
-    name: 'John',
-    gender: 'male',
-    legs: 2,
-    hands: 2,
-    saying: 'I want to learn JS!'
-};
+class Inhabitant {
+    constructor(species, name, gender, saying) {
+        this.species = species;
+        this.name = name;
+        this.gender = gender;
+        this.saying = saying;
+    }
 
-const woman = {
-    species: 'woman',
-    name: 'Emma',
-    gender: 'female',
-    legs: 2,
-    hands: 2,
-    saying: 'I want to learn JS!'
-};
-
-const cat = {
-    species: 'cat',
-    name: 'Sam',
-    gender: 'male',
-    legs: 4,
-    hands: 0,
-    saying: 'meow-meow!'
-};
-
-const dog = {
-    species: 'dog',
-    name: 'Bob',
-    gender: 'male',
-    legs: 4,
-    hands: 0,
-    saying: 'woof-woof!'
-};
-
-function toString(object) {
-    return [object.species, object.name, object.gender, object.legs, object.hands, object.saying].join(';');
+    toString(object) {
+        return [this.species, this.name, this.gender, this.saying].join(';');
+    }
 }
 
-[man, woman, cat, dog].forEach(object => print(toString(object)));
+class Man extends Inhabitant {
+    constructor(species, name, gender, saying, hands, legs) {
+        super(species, name, gender, saying);
+        this.hands = hands;
+        this.legs = legs;
+    }
+
+    toString(object) {
+        return super.toString() + [this.hands, this.legs].join(';');
+    }
+}
+
+class Woman extends Inhabitant {
+    constructor(species, name, gender, saying, hands, legs) {
+        super(species, name, gender, saying);
+        this.hands = hands;
+        this.legs = legs;
+    }
+
+    toString(object) {
+        return super.toString() + [this.hands, this.legs].join(';');
+    }
+}
+
+class Cat extends Inhabitant {
+    constructor(species, name, gender, saying, legs) {
+        super(species, name, gender, saying);
+        this.legs = legs;
+    }
+
+    toString(object) {
+        return super.toString() + this.legs;
+    }
+}
+
+class Dog extends Inhabitant {
+    constructor(species, name, gender, saying, legs) {
+        super(species, name, gender, saying);
+        this.legs = legs;
+    }
+
+    toString(object) {
+        return super.toString() + this.legs;
+    }
+}
+
+const inhabitants = [
+    new Man('man', 'John', 'male', 'Hi!', 2, 2),
+    new Woman('woman', 'Emma', 'female', 'Hello!', 2, 2),
+    new Cat('cat', 'Sam', 'make', 'meow-meow!', 4),
+    new Dog('dog', 'Bob', 'female', 'woof-woof!', 4)
+];
+
+inhabitants.forEach(object => print(object));
 
 // ======== OUTPUT ========
 /* Use print(message) for output.
