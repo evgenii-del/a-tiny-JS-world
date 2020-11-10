@@ -16,65 +16,53 @@ class Inhabitant {
         this.saying = saying;
     }
 
-    toString(object) {
-        return [this.species, this.name, this.gender, this.saying].join(';');
+    toString() {
+        return [this.species, this.name, this.gender, this.saying].join(';') + ';';
     }
 }
 
-class Man extends Inhabitant {
-    constructor(name, gender, saying = "Hi!", hands = 2, legs = 2) {
-        super('human', name, 'male', saying);
+class Human extends Inhabitant {
+    constructor(name, gender, saying = "Hi", hands = 2, legs = 2) {
+        super('human', name, gender, saying);
         this.hands = hands;
         this.legs = legs;
     }
 
-    toString(object) {
-        return super.toString() + [this.hands, this.legs].join(';');
-    }
-}
-
-class Woman extends Inhabitant {
-    constructor(name, gender, saying = 'Hello!', hands = 2, legs = 2) {
-        super('human', name, 'female', saying);
-        this.hands = hands;
-        this.legs = legs;
-    }
-
-    toString(object) {
+    toString() {
         return super.toString() + [this.hands, this.legs].join(';');
     }
 }
 
 class Cat extends Inhabitant {
-    constructor(name, gender, saying = 'meow-meow!', legs = 4) {
+    constructor(name, gender, saying = 'meow-meow', legs = 4) {
         super('cat', name, gender, saying);
         this.legs = legs;
     }
 
-    toString(object) {
+    toString() {
         return super.toString() + this.legs;
     }
 }
 
 class Dog extends Inhabitant {
-    constructor(name, gender, saying = 'woof-woof!', legs = 4) {
+    constructor(name, gender, saying = 'woof-woof', legs = 4) {
         super('dog', name, gender, saying);
         this.legs = legs;
     }
 
-    toString(object) {
+    toString() {
         return super.toString() + this.legs;
     }
 }
 
 const inhabitants = [
-    new Man('John'),
-    new Woman('Emma'),
+    new Human('John', 'male'),
+    new Human('Emma', 'female'),
     new Cat('Sam', 'male'),
     new Dog('Bob', 'female')
 ];
 
-inhabitants.forEach(obj => print(obj));
+inhabitants.forEach(inhabitant => print(inhabitant));
 
 // ======== OUTPUT ========
 /* Use print(message) for output.
